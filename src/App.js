@@ -10,35 +10,34 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
-function BasicCard(props) {
+const BasicCard = (props) => {
  
   const [answered, SetAnswered] = useState(false);
-  const show_answer = () => {
-    SetAnswered(true);
+
+  const button_click = () => {
+    if(answered)
+      SetAnswered(false);
+    else
+      SetAnswered(true)
   }
 
   return (
-    <Card sx={{ minWidth: 150}} style={{ backgroundColor: 'rgba(255, 215, 0, 0.5)'  }} className={`${answered ? 'fade-in-card': ''}`}> 
+    <Card sx={{ minWidth: 150}} style={{ backgroundColor: 'rgba(255, 215, 0, 0.75)'  }} className="fade-in-card"> 
       <CardContent >
         <Typography variant="h4" component="div" >
           <strong>
-          {answered && props.anwser}
-          {!answered && props.question}
+            {answered ?  props.anwser : props.question}
           </strong>
         </Typography>
       </CardContent>
-      {!answered &&
-          (
-            <CardActions>
-              <Button size="small" color="error" onClick={show_answer} className="button"><strong>prikaži odgovor</strong></Button>
-            </CardActions>
-          )
-      }
+      <CardActions>
+      <Button size="small" color="error" onClick={button_click} ><strong>{answered ? 'prikaži vprašanje' : 'prikaži odgovor'}</strong></Button>
+    </CardActions>
     </Card>
   );
 }
 
-function App() {
+const App = () => {
   const renderQuestions = questions_json.map(({id, question, anwser}) =>{
     return (
       <Grid item xs={6} md={3} key={id}>
@@ -49,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={autizm_svg} alt="avtizem"/>
+        <img src={autizm_svg} alt="avtizem" className='fade-in-card'/>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2}>
             {renderQuestions}

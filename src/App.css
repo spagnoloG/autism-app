@@ -4,7 +4,7 @@ body {
     background-size:100% 100%;
     -o-background-size: 100% 100%;
     -webkit-background-size: 100% 100%;
-    background-size:cover;
+    background-size:auto;
 }
 
 .css-1hgxlf6-MuiPaper-root-MuiCard-root {
