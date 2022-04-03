@@ -18,9 +18,9 @@ function BasicCard(props) {
   }
 
   return (
-    <Card sx={{ minWidth: 150}} style={{ backgroundColor: 'rgba(255, 215, 0, 0.5)'  }}> 
+    <Card sx={{ minWidth: 150}} style={{ backgroundColor: 'rgba(255, 215, 0, 0.5)'  }} className={`${answered ? 'fade-in-card': ''}`}> 
       <CardContent >
-        <Typography variant="h4" component="div">
+        <Typography variant="h4" component="div" >
           <strong>
           {answered && props.anwser}
           {!answered && props.question}
@@ -30,7 +30,7 @@ function BasicCard(props) {
       {!answered &&
           (
             <CardActions>
-              <Button size="small" color="error" onClick={show_answer}><strong>prikaži odgovor</strong></Button>
+              <Button size="small" color="error" onClick={show_answer} className="button"><strong>prikaži odgovor</strong></Button>
             </CardActions>
           )
       }
