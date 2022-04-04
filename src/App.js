@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import questions_json from './vprasanja.json'
 import autizm_svg from './autizm.svg';
 import Box from '@mui/material/Box';
@@ -13,13 +13,22 @@ import Grid from '@mui/material/Grid';
 const BasicCard = (props) => {
  
   const [answered, SetAnswered] = useState(false);
+  const [question, SetQuestion] = useState('prikaži vprašanje');
+  const [anwser, SetAnswer] = useState('prikaži odgovor');
 
   const button_click = () => {
     if(answered)
       SetAnswered(false);
     else
-      SetAnswered(true)
+      SetAnswered(true);
   }
+
+  useEffect(() => {
+    if(props.id == 15) {
+      SetAnswer('prikaži nadaljevanje');
+      SetQuestion('prikaži začetek');
+    }
+  }, [])
 
   return (
     <Card sx={{ minWidth: 150}} style={{ backgroundColor: 'rgba(255, 215, 0, 0.75)'  }} className="fade-in-card"> 
@@ -31,7 +40,7 @@ const BasicCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-      <Button size="small" color="error" onClick={button_click} ><strong>{answered ? 'prikaži vprašanje' : 'prikaži odgovor'}</strong></Button>
+      <Button size="small" color="error" onClick={button_click} ><strong>{answered ? question : anwser}</strong></Button>
     </CardActions>
     </Card>
   );
@@ -41,7 +50,7 @@ const App = () => {
   const renderQuestions = questions_json.map(({id, question, anwser}) =>{
     return (
       <Grid item xs={6} md={3} key={id}>
-        <BasicCard key={id} question={question} anwser={anwser} />
+        <BasicCard key={id} question={question} anwser={anwser} id={id} />
       </Grid>
     )
   })
