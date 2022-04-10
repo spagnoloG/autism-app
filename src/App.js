@@ -24,7 +24,7 @@ const BasicCard = (props) => {
   }
 
   useEffect(() => {
-    if(props.id == 15) {
+    if(props.id == 15 || props.id == 14) {
       SetAnswer('prikaži nadaljevanje');
       SetQuestion('prikaži začetek');
     }
