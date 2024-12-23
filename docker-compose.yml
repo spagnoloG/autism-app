@@ -4,9 +4,10 @@ services:
   autism-app:
     container_name: autism-app
     image: autism-app
+    restart: always
     build:
       context: .
     volumes:
       - ./src:/app/src
     ports:
-      - 3000:3000
+      - 12000:3000
