@@ -18,15 +18,15 @@ Follow these steps to install and run the application using **Docker**.
 ### Steps to Install
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/zavedanje-o-avtizmu.git
+   git clone https://github.com/spagnoloG/zavedanje-o-avtizmu.git
    cd zavedanje-o-avtizmu
+   ```
 2. Build and start the application using Docker Compose:
+    ```bash
+    docker-compose up --build -d
+    ```
 
-```bash
-docker-compose up --build -d
-```
-
-3. Open your browser and visit `http://localhost:3000/` to view the application.
+3. Open your browser and visit `http://localhost:12000/` to view the application.
 
 ## 🤝 Contributing
 
