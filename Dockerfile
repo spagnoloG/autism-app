@@ -1,19 +1,24 @@
-FROM node:16-alpine AS development
-# Add a work directory
+# Stage 1: Build
+FROM node:18-alpine AS build
+
 WORKDIR /app
 
-# Cache and Install dependencies
-COPY package.json .
-RUN yarn install
-# Copy app files
+COPY package.json ./
+RUN yarn install 
+
 COPY . .
 
-# Generate js.minified files
 RUN yarn build
+
+# Stage 2: Serve
+FROM node:18-alpine AS serve
+
+WORKDIR /app
+
+COPY --from=build /app/build ./build
+
 RUN yarn global add serve
 
-# Expose port
 EXPOSE 3000
 
-# Start the app
-CMD [ "serve", "-s", "/app/build"]
+CMD [ "serve", "-s", "build" ]

@@ -1,13 +1,13 @@
-version: "3.8"
-
 services:
   autism-app:
     container_name: autism-app
-    image: autism-app
-    restart: always
+    image: autism-app:latest
+    restart: unless-stopped
     build:
       context: .
-    volumes:
-      - ./src:/app/src
     ports:
-      - 12000:3000
+      - "12000:3000"
+    environment:
+      - NODE_ENV=production 
+      - PORT=3000
+
